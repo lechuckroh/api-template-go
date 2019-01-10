@@ -24,7 +24,7 @@ COVER_XML=$(REPORT_DIR)/coverage.xml
 JUNIT_REPORT=$(REPORT_DIR)/junit.xml
 
 VERSION=latest
-DOCKER_TAG=restapi-template-go:$(VERSION)
+DOCKER_TAG=api-template-go:$(VERSION)
 
 
 all: test build

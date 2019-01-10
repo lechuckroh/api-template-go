@@ -1,9 +1,9 @@
-[![GitHub license](https://img.shields.io/github/license/r0oth3x49/udemy-dl.svg?style=flat-square)](https://github.com/lechuckroh/restapi-template-go/blob/master/LICENSE)
-[![Build Status](https://travis-ci.com/lechuckroh/restapi-template-go.svg?branch=master)](https://travis-ci.com/lechuckroh/restapi-template-go)
+[![GitHub license](https://img.shields.io/github/license/r0oth3x49/udemy-dl.svg?style=flat-square)](https://github.com/lechuckroh/api-template-go/blob/master/LICENSE)
+[![Build Status](https://travis-ci.com/lechuckroh/api-template-go.svg?branch=master)](https://travis-ci.com/lechuckroh/api-template-go)
 
-# restapi-template-go
+# api-template-go
 
-REST API server template written in Go.
+HTTP API server template written in Go.
 
 This code is inspired by [How I write Go HTTP services after seven years](https://medium.com/statuscode/how-i-write-go-http-services-after-seven-years-37c208122831).
 

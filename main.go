@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/lechuckroh/restapi-template-go/app"
+	"github.com/lechuckroh/api-template-go/app"
 	"log"
 )
 

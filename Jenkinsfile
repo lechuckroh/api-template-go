@@ -5,7 +5,7 @@ node {
 
     String dockerRegistry = env.DOCKER_REGISTRY ?: ''
     String dockerRegistryCredentialId = env.DOCKER_REGISTRY_CREDENTIAL ?: 'credential-docker-registry'
-    String dockerImageName = 'lechuckroh/restapi-template-go'
+    String dockerImageName = 'lechuckroh/api-template-go'
     String dockerImageVersion = "1.0.${env.BUILD_ID}".toString()
 
     stage('Build image') {
