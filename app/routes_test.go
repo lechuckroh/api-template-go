@@ -45,11 +45,13 @@ func TestAddItem(t *testing.T) {
 		Name string `json:"name"`
 	}
 
-	Convey("should response 400 if body is empty", t, func() {
+	Convey("should response 400 if name is invalid type", t, func() {
 		server := NewServer()
 		server.routes()
 
-		_, w, _ := server.postJSON("/api/items", struct{}{}, nil)
+		_, w, _ := server.postJSON("/api/items", struct {
+			Name int `json:"name"`
+		}{Name: 1}, nil)
 		So(w.Code, ShouldEqual, http.StatusBadRequest)
 	})
 
