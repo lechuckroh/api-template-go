@@ -1,7 +1,7 @@
 # restapi-template-go
 REST API server template written in Go.
 
-This code is inspired by [How I write Go HTTP services after seven years][1].
+This code is inspired by [How I write Go HTTP services after seven years](https://medium.com/statuscode/how-i-write-go-http-services-after-seven-years-37c208122831).
 
 It uses:
 * [Gin-Gonic](https://github.com/gin-gonic/gin): HTTP web framework
@@ -41,5 +41,3 @@ $ make cover-xml-junit
 
 * `reports/coverage.xml`: Cobertura coverage report
 * `reports/junit.xml`: JUnit report
-
-[1] https://medium.com/statuscode/how-i-write-go-http-services-after-seven-years-37c208122831

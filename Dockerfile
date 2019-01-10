@@ -3,9 +3,10 @@ FROM golang:1.11 as builder
 
 WORKDIR /usr/src/myapp
 
-COPY "app" "./app/"
 COPY ["go.mod", "go.sum", "healthcheck.sh", "main.go", "./"]
+RUN go mod download
 
+COPY "app" "./app/"
 RUN CGO_ENABLED=0 GOOS=linux GO111MODULE=on go build -a -installsuffix cgo -o app-server .
 
 # Create image
