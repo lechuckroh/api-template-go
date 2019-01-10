@@ -14,7 +14,7 @@ ENV_GOMOD_ON=GO111MODULE=on
 ENV_TEST=
 # uncomment to use 'vendor' directory
 #VENDOR_OPT=-mod=vendor
-GOBUILD_OPT=$(VENDOR_OPT) -v
+GOBUILD_OPT=$(VENDOR_OPT)
 GOTEST_OPT=$(VENDOR_OPT) -v
 
 BINARY=app-server
@@ -41,22 +41,26 @@ build:
 	@$(ENV_GOMOD_ON) $(GOBUILD) $(GOBUILD_OPT) -o $(BINARY)
 
 build-image:
-	@docker build -t $(DOCKER_TAG) .
+	CGO_ENABLED=0 GOOS=linux $(ENV_GOMOD_ON) $(GOBUILD) $(GOBUILD_OPT) -a -installsuffix cgo -o $(BINARY)
+	docker build -t $(DOCKER_TAG) .
+
+docker-build-image:
+	@docker build -f Dockerfile-build -t $(DOCKER_TAG) .
 
 # Test
 test:
 	@$(ENV_GOMOD_ON) $(ENV_TEST) $(GOTEST) $(GOTEST_OPT) -count=1 $(TEST_DIR)
 
-cover: report-init
+cover-run: report-init
 	@$(ENV_GOMOD_ON) $(GOTEST) $(GOTEST_OPT) -covermode=count -coverprofile=$(COVER_TXT) -coverpkg=$(TEST_DIR) $(TEST_DIR)
-cover-html: cover
+cover-html: cover-run
 	@$(GOCOVER) -html=$(COVER_TXT) -o $(COVER_HTML)
-cover-cout: cover
+cover-cout: cover-run
 	@$(GOCOVER) -func=$(COVER_TXT)
-cover-xml: install-cover-tool cover
+cover-xml: install-cover-tool cover-run
 	@gocover-cobertura < $(COVER_TXT) > $(COVER_XML)
 
-cover-xml-junit: report-init install-junit-tool
+cover: report-init install-junit-tool
 	@make cover-xml | go-junit-report > $(JUNIT_REPORT)
 
 # Clean

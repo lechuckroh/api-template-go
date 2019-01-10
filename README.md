@@ -8,7 +8,7 @@ It uses:
 * [GoConvey](https://github.com/smartystreets/goconvey): BDD style testing tool
 
 ## Requirements
-* Go v1.11 or higher
+* Go 1.11 or higher
 
 ## Build
 ```bash
@@ -17,6 +17,9 @@ $ make build
 
 # build docker image
 $ make build-image
+
+# build docker image using docker
+$ make docker-build-image
 
 # run docker image
 $ make run-image
@@ -29,14 +32,11 @@ Server listens on `8080` port.
 # Run test
 $ make test
 
-# Generate html coverage report
+# Generate coverage report
+$ make cover
+
+# Generate coverage report in html format
 $ make cover-html
-
-# Generate Cobertura coverage report
-$ make cover-xml
-
-# Generate JUnit report
-$ make cover-xml-junit
 ```
 
 * `reports/coverage.xml`: Cobertura coverage report

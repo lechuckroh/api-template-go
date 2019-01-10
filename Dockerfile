@@ -1,15 +1,3 @@
-# Build binary
-FROM golang:1.11 as builder
-
-WORKDIR /usr/src/myapp
-
-COPY ["go.mod", "go.sum", "healthcheck.sh", "main.go", "./"]
-RUN go mod download
-
-COPY "app" "./app/"
-RUN CGO_ENABLED=0 GOOS=linux GO111MODULE=on go build -a -installsuffix cgo -o app-server .
-
-# Create image
 FROM alpine:latest
 
 LABEL MAINTAINER="Lechuck Roh <lechuckroh@gmail.com>"
@@ -23,11 +11,9 @@ VOLUME ["/app/logs"]
 
 EXPOSE 8080
 
-ENV GIN_MODE release
-
 HEALTHCHECK CMD /app/healthcheck.sh
 
-COPY --from=builder /usr/src/myapp/app-server ./
 COPY healthcheck.sh ./
+COPY app-server ./
 
 ENTRYPOINT ["./app-server"]
